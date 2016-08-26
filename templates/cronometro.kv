@@ -1,0 +1,25 @@
+<JanelaCronometro>:
+    GridLayout: # janela_cronometro
+        id: janela_cronometro
+        cols: 1
+        rows: 2
+        spacing: 3, 3
+        padding: 1, 1
+        Label:
+            id: tx_clock
+            text: ''
+            font_size: '49sp'
+        GridLayout:
+            cols: 1
+            rows: 2
+            padding: 5, 5
+            Button:
+                size_hint: 1.0 , 0.3
+                id: butt_start
+                text: 'Start'
+                on_release: root.do_start()
+            Button:
+                size_hint: 1.0 , 0.3
+                id: butt_reset
+                text: 'Reset'
+                on_release: root.do_reset()
