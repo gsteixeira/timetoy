@@ -16,7 +16,7 @@ from time import gmtime, strftime, time
 import time
 from chronograph.chronograph import Chronograph
 
-
+from kivy.uix.label import Label
 
 
 class JanelaCronometro (Screen):
@@ -25,7 +25,9 @@ class JanelaCronometro (Screen):
         self.smanager = smanager
         self.last_window = last_window
         
-        self.running = False
+        self.ids.area_laps.bind(minimum_height=self.ids.area_laps.setter('height'))
+        
+        self.running = None
         self.cg = Chronograph(name="Testing Chronograph")
         
     def on_leave (self):
@@ -35,11 +37,22 @@ class JanelaCronometro (Screen):
     def do_start (self):
         if self.running:
             #self.timer_refresh # stoppp
-            Clock.unschedule(self.timer_refresh )
-            self.cg.stop()
+                
             self.running = False
             self.ids.butt_start.text = 'Start'
             self.ids.butt_reset.disabled = False
+            self.cg.stop()
+            
+                
+            elapsed_time = self.cg.total_elapsed_time
+            td = timedelta (seconds=elapsed_time)
+            tempo = str(td)[:-3]
+            
+            wid = Label(text=tempo)
+            self.ids.area_laps.add_widget (wid)
+            
+            self._refresh(0)
+            Clock.unschedule(self.timer_refresh )
         else:
             self.running = True
             self.timer_refresh = Clock.schedule_interval( self._refresh, 0.1)

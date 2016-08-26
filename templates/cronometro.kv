@@ -2,13 +2,31 @@
     GridLayout: # janela_cronometro
         id: janela_cronometro
         cols: 1
-        rows: 2
+        rows: 3
         spacing: 3, 3
         padding: 1, 1
         Label:
             id: tx_clock
             text: ''
             font_size: '49sp'
+        ScrollView:
+            id: scroll_area_laps
+            size: self.size
+            GridLayout: # area_laps
+                id: area_laps
+                size_hint_y: None
+                cols:1
+                row_default_height: '40dp'
+                row_force_default: False
+                #spacing: 10, 10
+                #padding: 5, 5
+                
+                canvas:
+                    Color:
+                        rgb: .5, .5, .5
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
         GridLayout:
             cols: 1
             rows: 2
