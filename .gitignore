@@ -1,5 +1,6 @@
 *swp
 *.pyc
+.buildozer/
 .buildozer
 *.apk
 *.chk
